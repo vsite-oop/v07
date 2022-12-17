@@ -25,16 +25,16 @@ namespace vsite::oop::v7
         return true;
     };
 
-    std::ostream& operator<<(std::ostream &os, money &m) {
+    std::ostream& operator<<(std::ostream &os, const money &m) {
         os << std::format("{} kn, {:0>2} lp", m.lipe / 100, m.lipe % 100);
         return os;
     }
 
-    void operator+=(money& rm, money& lm) {
+    void operator+=(money& rm, const money& lm) {
         rm.lipe += lm.lipe;
     }
 
-    void operator-=(money& rm, money& lm) {
+    void operator-=(money& rm, const money& lm) {
         if (rm.lipe < lm.lipe)
             rm.lipe = 0;
         else rm.lipe -= lm.lipe;

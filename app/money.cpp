@@ -16,28 +16,35 @@ namespace vsite::oop::v7
         lipe += l;
     };
 
-    bool operator>>(std::istream& inputStream, money& m) {
+    std::istream& operator>>(std::istream& inputStream, money& m) {
         uint32_t k, l;
         inputStream >> k;
         inputStream >> l;
         m.lipe = (k * 100);
         m.lipe += l;
-        return true;
+        return inputStream;
     };
 
     std::ostream& operator<<(std::ostream &os, const money &m) {
-        os << std::format("{} kn, {:0>2} lp", m.lipe / 100, m.lipe % 100);
+        auto k = m.lipe / 100;
+        auto l = m.lipe % 100;
+        if (k) os << k << " kn";
+        if (k && l) os << ", ";
+        if (l) os << std::format("{:0>2} lp", l);
+        if (!k && !l) os << "No cash";
         return os;
     }
 
-    void operator+=(money& rm, const money& lm) {
-        rm.lipe += lm.lipe;
+    money& money::operator+=(const money& lm) {
+        lipe += lm.lipe;
+        return *this;
     }
 
-    void operator-=(money& rm, const money& lm) {
-        if (rm.lipe < lm.lipe)
-            rm.lipe = 0;
-        else rm.lipe -= lm.lipe;
+    money& money::operator-=(const money& lm) {
+        if (lipe < lm.lipe)
+            lipe = 0;
+        else lipe -= lm.lipe;
+        return *this;
     }
 
 }

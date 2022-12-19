@@ -1,16 +1,9 @@
 #include "money.h"
-#include <algorithm>
 #include <iostream>
 #include <format>
 
 namespace vsite::oop::v7
 {
-	money::money() :
-		lipe(0) { }
-
-	money::money(int kune) :
-		lipe(kune * 100) { }
-
 	money::money(int kune, int lipe) :
 		lipe(kune * 100 + lipe) { }
 

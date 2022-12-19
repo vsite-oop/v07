@@ -1,5 +1,7 @@
 #include "../app/money.h"
 #include "CppUnitTest.h"
+//#include <type_traits>
+//#include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace vsite::oop::v7;
@@ -10,7 +12,6 @@ namespace UnitTests
 	TEST_CLASS(test_v7_money)
 	{
 	public:
-
 		TEST_METHOD(default_ctor_init_to_zero)
 		{
 			money a;
@@ -58,26 +59,18 @@ namespace UnitTests
 		{
 			money a(4, 40);
 			money b(2, 60);
-
 			a += b;
-			std::stringstream ss;
-			ss << a;
 
-			std::string rez = "7 kn";
-			Assert::AreEqual(rez, ss.str());
+			Assert::AreEqual(700, a.get_kune() * 100 + a.get_lipe());
 		}
 
 		TEST_METHOD(minus_equals_operator)
 		{
 			money a(4, 40);
 			money b(2, 60);
-
 			a -= b;
-			std::stringstream ss;
-			ss << a;
 
-			std::string rez = "1 kn, 80 lp";
-			Assert::AreEqual(rez, ss.str());
+			Assert::AreEqual(180, a.get_kune() * 100 + a.get_lipe());
 		}
 
 		TEST_METHOD(cin_operator_overload)
@@ -87,7 +80,8 @@ namespace UnitTests
 			std::stringstream ss;
 			ss << "2 40";
 			ss >> a;
-			Assert::IsTrue(b == a);
+
+			Assert::AreEqual(a.get_kune() * 100 + a.get_lipe(), b.get_kune() * 100 + b.get_lipe());
 		}
 
 		TEST_METHOD(money_cout_operator)
@@ -96,7 +90,7 @@ namespace UnitTests
 			std::stringstream ss;
 			ss << a;
 
-			Assert::IsTrue("2 kn, 40 lp" == ss.str());
+			Assert::AreEqual("2 kn, 40 lp", ss.str().c_str());
 		}
 
 		TEST_METHOD(kune_cout_operator)
@@ -105,7 +99,7 @@ namespace UnitTests
 			std::stringstream ss;
 			ss << a;
 
-			Assert::IsTrue("2 kn" == ss.str());
+			Assert::AreEqual("2 kn", ss.str().c_str());
 		}
 
 		TEST_METHOD(lipe_cout_operator)
@@ -114,7 +108,7 @@ namespace UnitTests
 			std::stringstream ss;
 			ss << a;
 
-			Assert::IsTrue("40 lp" == ss.str());
+			Assert::AreEqual("40 lp", ss.str().c_str());
 		}
 	};
 }

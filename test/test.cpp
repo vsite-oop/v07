@@ -134,7 +134,7 @@ namespace test
 			Assert::AreEqual((int)2147483647, m.get());
 		}*/
 
-		/*TEST_METHOD(zero_initialized_input_output) {
+		TEST_METHOD(zero_initialized_input_output) {
 			std::stringstream ss;
 			money m;
 			ss << m;
@@ -160,7 +160,7 @@ namespace test
 			money m(1);
 			ss << m;
 			Assert::AreEqual(ss.str().c_str(), "01 lp");
-		}*/
+		}
 
 		TEST_METHOD(input_stream_single_value) {
 			/*Ovo iz nekog razloga ne radi ako koristim isti

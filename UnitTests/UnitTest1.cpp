@@ -1,7 +1,5 @@
 #include "../app/money.h"
 #include "CppUnitTest.h"
-//#include <type_traits>
-//#include <iostream>
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace vsite::oop::v7;
@@ -20,18 +18,32 @@ namespace UnitTests
 
 		}
 
-		TEST_METHOD(ctor_init_one_argument)
+		TEST_METHOD(ctor_init_one_argument_positive)
 		{
-			money a(0);
-			Assert::AreEqual(0, a.get_kune());
+			money a(2);
+			Assert::AreEqual(2, a.get_kune());
 			Assert::AreEqual(0, a.get_lipe());
 		}
 
-		TEST_METHOD(ctor_init_two_arguments)
+		TEST_METHOD(ctor_init_one_argument_negative)
+		{
+			money a(-2);
+			Assert::AreEqual(-2, a.get_kune());
+			Assert::AreEqual(0, a.get_lipe());
+		}
+
+		TEST_METHOD(ctor_init_two_arguments_positive)
 		{
 			money a(2, 40);
 			Assert::AreEqual(2, a.get_kune());
 			Assert::AreEqual(40, a.get_lipe());
+		}
+
+		TEST_METHOD(ctor_init_two_arguments_negative)
+		{
+			money a(-2, 40);
+			Assert::AreEqual(-2, a.get_kune());
+			Assert::AreEqual(-40, a.get_lipe());
 		}
 
 		TEST_METHOD(copy_ctor)
@@ -93,6 +105,15 @@ namespace UnitTests
 			Assert::AreEqual("2 kn, 40 lp", ss.str().c_str());
 		}
 
+		TEST_METHOD(money_cout_operator_negative)
+		{
+			money a(-2, 40);
+			std::stringstream ss;
+			ss << a;
+
+			Assert::AreEqual("-2 kn, 40 lp", ss.str().c_str());
+		}
+
 		TEST_METHOD(kune_cout_operator)
 		{
 			money a(2);
@@ -102,6 +123,15 @@ namespace UnitTests
 			Assert::AreEqual("2 kn", ss.str().c_str());
 		}
 
+		TEST_METHOD(kune_cout_operator_negative)
+		{
+			money a(-2);
+			std::stringstream ss;
+			ss << a;
+
+			Assert::AreEqual("-2 kn", ss.str().c_str());
+		}
+
 		TEST_METHOD(lipe_cout_operator)
 		{
 			money a(0, 40);
@@ -109,6 +139,15 @@ namespace UnitTests
 			ss << a;
 
 			Assert::AreEqual("40 lp", ss.str().c_str());
+		}
+
+		TEST_METHOD(lipe_cout_operator_negative)
+		{
+			money a(0, -40);
+			std::stringstream ss;
+			ss << a;
+
+			Assert::AreEqual("-40 lp", ss.str().c_str());
 		}
 	};
 }

@@ -5,7 +5,7 @@
 namespace vsite::oop::v7
 {
 	money::money(int kune, int lipe) :
-		lipe(kune * 100 + lipe) { }
+		lipe(kune * 100 + lipe * ((kune >= 0)? 1 : -1)) { }
 
 	money::money(const money& other) :
 		lipe(other.lipe) { }
@@ -44,8 +44,11 @@ namespace vsite::oop::v7
 		if (out_kune && out_lipe)
 			output_stream << ", ";
 
+		else if (!out_kune && !out_lipe)
+			output_stream << "0 kn";
+
 		if (out_lipe)
-			output_stream << std::format("{:0>2} lp", out_lipe);
+			output_stream << std::format("{:0>2} lp", ((out_kune < 0)? abs(out_lipe) : out_lipe));
 
 		return output_stream;
 	}

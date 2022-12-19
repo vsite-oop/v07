@@ -15,9 +15,9 @@ namespace vsite::oop::v7
 
 	}
 
-	int money::get() {
-		return lp;
-	}
+	//int money::get() {
+		//return lp;
+	//}
 
 	money& money::operator+=(const money& other) {
 		lp += other.lp;
@@ -40,7 +40,15 @@ namespace vsite::oop::v7
 	std::ostream& operator<<(std::ostream& os, const money& m) {
 		int kn = m.lp / 100;
 		int lp = m.lp % 100;
-		os << std::format("{} kn, {:02} lp", kn, lp);
+		if (lp == 0) {
+			os << std::format("{} kn", kn);  // Default.
+		}
+		else if (kn == 0) {
+			os << std::format("{:02} lp", lp);
+		}
+		else {
+			os << std::format("{} kn, {:02} lp", kn, lp);
+		}
 		return os;
 	}
 }

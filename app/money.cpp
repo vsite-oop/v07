@@ -1,13 +1,13 @@
 #include "money.h"
 #include <algorithm>
 
-#include <sstream>  // bez ovoga mi javlja grešku za operator >> u liniji 28
+#include <sstream>  // >>
 #include <format>
 
 namespace vsite::oop::v7
 {
 	/*===class money===*/
-	money::money(int lp = 0) : lp(lp) {
+	money::money(unsigned lp = 0) : lp(lp) {
 
 	}
 
@@ -15,22 +15,21 @@ namespace vsite::oop::v7
 
 	}
 
-	//int money::get() {
-		//return lp;
-	//}
-
 	money& money::operator+=(const money& other) {
 		lp += other.lp;
 		return *this;
 	}
 
 	money& money::operator-=(const money& other) {
-		lp -= other.lp;
+		if (lp < other.lp)  // Amount of money can't be negative value.
+			lp = 0;
+		else
+			lp -= other.lp;
 		return* this;
 	}
 
 	std::istream& operator>>(std::istream& is, money& m) {
-		int kn;
+		unsigned kn;
 		is >> kn >> m.lp;
 		kn *= 100;
 		m.lp += kn;
@@ -38,8 +37,8 @@ namespace vsite::oop::v7
 	}
 
 	std::ostream& operator<<(std::ostream& os, const money& m) {
-		int kn = m.lp / 100;
-		int lp = m.lp % 100;
+		unsigned kn = m.lp / 100;
+		unsigned lp = m.lp % 100;
 		if (lp == 0) {
 			os << std::format("{} kn", kn);  // Default.
 		}
@@ -52,3 +51,13 @@ namespace vsite::oop::v7
 		return os;
 	}
 }
+
+/*N.B.
+
+Ako želim imati dva data membera - kune i lipe, a želim moæi
+konstruktoru predati samo jedan argument (kao što je u mainu
+"money total(0)", onda ne smiju oba imati zadanu vrijednost jer onda
+kompajler ne zna za kojeg želim poslati vrijednost, nego onda moram
+imati jednoga, npr. kune, bez zadane vrijednosti pa dok pri pozivu
+konstruktora šaljem jednu vrijednost ona æe otiæi u argument bez zadane
+vrijednosti.*/

@@ -34,16 +34,6 @@ namespace test
 			Assert::AreEqual("05 lp", ss.str().c_str());
 		}
 
-		/*TEST_METHOD(initialization_overflow) {
-			money m(2147483648);
-			Assert::AreEqual((int)2147483648, m.get());
-		}
-
-		TEST_METHOD(initialization_underflow) {
-			money m(-2147483648);
-			Assert::AreEqual((int)-2147483648, m.get());
-		}*/
-
 		TEST_METHOD(uninitialized_in_place_addition) {
 			std::stringstream ss;
 			money m, n;
@@ -82,13 +72,6 @@ namespace test
 			Assert::AreEqual("11 kn, 39 lp", ss.str().c_str());
 		}
 
-		/*TEST_METHOD(overflowed_initialized_in_place_addition) {
-			money m(1);
-			money n(2147483647);
-			m += n;
-			Assert::AreEqual((int)-2147483648, m.get());
-		}*/
-
 		TEST_METHOD(uninitialized_in_place_subtraction) {
 			std::stringstream ss;
 			money m, n;
@@ -107,11 +90,11 @@ namespace test
 			money n(500);
 			m -= n;
 			ss << m;
-			Assert::AreEqual("-5 kn", ss.str().c_str());
+			Assert::AreEqual("0 kn", ss.str().c_str());
 			ss.str(std::string());
 			n -= m;
 			ss << n;
-			Assert::AreEqual("10 kn", ss.str().c_str());
+			Assert::AreEqual("5 kn", ss.str().c_str());
 		}
 
 		TEST_METHOD(non_zero_initialized_in_place_subtraction) {
@@ -124,15 +107,8 @@ namespace test
 			ss.str(std::string());
 			n -= m;
 			ss << n;
-			Assert::AreEqual("-2 kn, -22 lp", ss.str().c_str());
+			Assert::AreEqual("0 kn", ss.str().c_str());
 		}
-
-		/*TEST_METHOD(underflowed_initialized_in_place_subtraction) {
-			money m((int)-2147483648);
-			money n(1);
-			m -= n;
-			Assert::AreEqual((int)2147483647, m.get());
-		}*/
 
 		TEST_METHOD(zero_initialized_input_output) {
 			std::stringstream ss;
@@ -162,7 +138,7 @@ namespace test
 			Assert::AreEqual(ss.str().c_str(), "01 lp");
 		}
 
-		TEST_METHOD(input_stream_single_value) {
+		TEST_METHOD(input_output_stream_single_value) {
 			/*Ovo iz nekog razloga ne radi ako koristim isti
 			stringstream kojeg samo "pocistim" sa "ss.str(std::string)"
 			ili "ss.str("")" prije nego napravim "ss << m", nego
@@ -176,7 +152,7 @@ namespace test
 			Assert::AreEqual("5 kn", ss2.str().c_str());
 		}
 
-		TEST_METHOD(input_stream_both_values) {
+		TEST_METHOD(input_output_stream_both_values) {
 			std::stringstream ss1;
 			money m;
 			ss1 << 5 << " " << 5;

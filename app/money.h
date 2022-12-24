@@ -5,9 +5,9 @@
 namespace vsite::oop::v7 
 {
 	class money {
-		int lp;
+		unsigned lp;
 	public:
-		money(int lp);
+		money(unsigned lp);
 		money();
 		money& operator+=(const money& other);
 		money& operator-=(const money& other);

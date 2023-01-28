@@ -8,18 +8,12 @@ namespace vsite::oop::v7
 		int kn;
 		int lp;
 		friend std::istream& operator>>(std::istream&, money&);
-		friend std::ostream& operator<< (std::ostream& os, const money& a);
+		friend std::ostream& operator<< (std::ostream& os, money& a);
 	public:
-		money();
-		money(int a);
-		money(int a, int b);
+		money(int a = 0, int b = 0);
 		money(double a);
 		~money();
 		operator double();
-		money& operator+(double a);
-		money& operator+=(double a);
-		money& operator-(double a);
-		money& operator-=(double a);
 		money& operator+(const money& other);
 		money& operator-(const money& other);
 		money& operator+=(const money& other);

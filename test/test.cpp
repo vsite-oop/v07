@@ -128,6 +128,19 @@ namespace tests
 			Assert::AreEqual("31 kn, 05 lp", ss.str().c_str());
 		}
 
+		TEST_METHOD(input_stream) {
+			std::stringstream is;
+			money m;
+			is << 10 << " " << 10;
+			is >> m;
+
+			std::stringstream os;
+			os << m;
+			Assert::AreEqual("10 kn, 10 lp", os.str().c_str());
+
+
+		}
+
 		TEST_METHOD(input) {
 			std::stringstream ss("10 10 20 20");
 
@@ -149,18 +162,7 @@ namespace tests
 			Assert::AreEqual("30 kn, 30 lp", ss2.str().c_str());
 		}
 
-		TEST_METHOD(input_stream) {
-			std::stringstream is;
-			money m;
-			is << 10 << " " << 10;
-			is >> m;
-
-			std::stringstream os;
-			os << m;
-			Assert::AreEqual("10 kn, 10 lp", os.str().c_str());
-			
-			
-		}
+		
 
 	};
 }

@@ -22,6 +22,9 @@ public:
 	money& operator-= (const money&);
 
 	~money();
+
+	int kune() const;
+	int lipe() const;
 };
 
 }

@@ -16,7 +16,7 @@ namespace vsite::oop::v7
 		return is >> m.kn >> m.lp;
 	}
 
-	std::ostream& operator<< (std::ostream& os, const money& m) {
+	std::ostream& operator<< (std::ostream& os,const money& m) {
 		
 		os << m.kn << ' ' << "kn";
 		if (m.lp)
@@ -49,5 +49,13 @@ namespace vsite::oop::v7
 			this->lp = this->lp - other.lp;
 		}
 		return *this;
+	}
+
+	int money::kune() const {
+		return kn;
+	}
+
+	int money::lipe() const {
+		return lp;
 	}
 }

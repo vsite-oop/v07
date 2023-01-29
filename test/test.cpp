@@ -77,7 +77,7 @@ namespace tests
 			money m(0, 10);
 			ss << m;
 
-			Assert::AreEqual("0 kn, 10 lp", ss.str().c_str());
+			Assert::AreEqual("10 lp", ss.str().c_str());
 		}
 
 		TEST_METHOD(adding) {
@@ -127,5 +127,7 @@ namespace tests
 
 			Assert::AreEqual("31 kn, 05 lp", ss.str().c_str());
 		}
+
+
 	};
 }

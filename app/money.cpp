@@ -18,9 +18,18 @@ namespace vsite::oop::v7
 
 	std::ostream& operator<< (std::ostream& os,const money& m) {
 		
-		os << m.kn << ' ' << "kn";
+		/*os << m.kn << ' ' << "kn";
 		if (m.lp)
 			os << "," << ' ' << std::setw(2) << std::setfill('0') << m.lp << ' ' << "lp";
+		return os;*/
+
+		if(m.lp ==0)
+			os << m.kn << ' ' << "kn";
+		else if(m.kn ==0)
+			os << std::setw(2) << std::setfill('0') << m.lp << ' ' << "lp";
+		else
+			os << m.kn << ' ' << "kn" << "," << ' ' << std::setw(2) << std::setfill('0') << m.lp << ' ' << "lp";
+
 		return os;
 	}
 	

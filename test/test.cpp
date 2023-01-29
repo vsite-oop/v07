@@ -140,6 +140,13 @@ namespace tests
 			ss >> m2;
 			Assert::AreEqual(20, m2.kune());
 			Assert::AreEqual(20, m2.lipe());
+
+			std::stringstream ss2;
+			money m;
+			m += m1;
+			m += m2;
+			ss2 << m;
+			Assert::AreEqual("30 kn, 30 lp", ss2.str().c_str());
 		}
 
 	};

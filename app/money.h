@@ -11,17 +11,13 @@ private:
 	int lp;
 
 public:
-	money();
-	money(int kn);
-	money(int kn, int lp);
+	money(int kn = 0, int lp = 0);
 
 	friend std::istream& operator>> (std::istream&, money&);
 	friend std::ostream& operator<< (std::ostream&, const money&);
 
 	money& operator+= (const money&);
 	money& operator-= (const money&);
-
-	~money();
 
 	int kune() const;
 	int lipe() const;

@@ -6,11 +6,7 @@
 
 namespace vsite::oop::v7
 {
-	money::money() : kn(0), lp(0) {};
-	money::money(int kune) : kn(kune), lp(0) {};
-	money::money(int kune, int lipe) : kn(kune), lp(lipe) {};
-
-	money::~money() {};
+	money::money(int kune , int lipe) : kn(kune), lp(lipe) {};
 
 	std::istream& operator>> (std::istream& is, money& m) {
 		return is >> m.kn >> m.lp;

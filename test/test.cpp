@@ -128,6 +128,19 @@ namespace tests
 			Assert::AreEqual("31 kn, 05 lp", ss.str().c_str());
 		}
 
+		TEST_METHOD(input) {
+			std::stringstream ss("10 10 20 20");
+
+			money m1, m2;
+
+			ss >> m1;
+			Assert::AreEqual(10, m1.kune());
+			Assert::AreEqual(10, m1.lipe());
+
+			ss >> m2;
+			Assert::AreEqual(20, m2.kune());
+			Assert::AreEqual(20, m2.lipe());
+		}
 
 	};
 }

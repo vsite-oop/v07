@@ -43,6 +43,6 @@ namespace tests
 		//	//u testu
 		//	std::stringstream ss("123");
 		//	test_input(ss);
-		}
+		//}
 	};
 }

@@ -112,5 +112,20 @@ namespace tests
 			Assert::AreEqual(70, m.lipe());
 		}
 
+
+		TEST_METHOD(example) {
+			std::stringstream ss;
+			money m;
+
+			m += money(6, 80);
+			m += money(7, 20);
+			m += money(12, 40);
+			m -= money(5, 50);
+			m += money(10, 15);
+
+			ss << m;
+
+			Assert::AreEqual("31 kn, 05 lp", ss.str().c_str());
+		}
 	};
 }

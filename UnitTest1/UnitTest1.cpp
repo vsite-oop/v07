@@ -1,5 +1,7 @@
-#include "../app/money.h"
+#include "pch.h"
 #include "CppUnitTest.h"
+#include "../app/money.h"
+#include "../app/money.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace vsite::oop::v7;
@@ -22,13 +24,13 @@ namespace UnitTests
 
 			money c(10, 20);
 			Assert::AreEqual(10, c.get_kune());
-			Assert::AreEqual(20, c.get_lipe());		
-			
-			money e(0, -10);
-			Assert::AreEqual(0, e.get_kune());
-			Assert::AreEqual(-10, e.get_lipe());
+			Assert::AreEqual(20, c.get_lipe());
 
-			money f(-10, -20);
+			money e(0, 10);
+			Assert::AreEqual(0, e.get_kune());
+			Assert::AreEqual(10, e.get_lipe());
+
+			money f(-10, 20);
 			Assert::AreEqual(-10, f.get_kune());
 			Assert::AreEqual(-20, f.get_lipe());
 		}
@@ -37,17 +39,17 @@ namespace UnitTests
 		{
 			money a;
 
-			a += money(5, 5);
-			Assert::AreEqual(5, a.get_kune());
-			Assert::AreEqual(5, a.get_lipe());
-
-			a -= money(10, 10);
+			a += money(10, 10);
 			Assert::AreEqual(10, a.get_kune());
+			Assert::AreEqual(10, a.get_lipe());
+
+			a -= money(10,0);
+			Assert::AreEqual(0, a.get_kune());
 			Assert::AreEqual(10, a.get_lipe());
 
 			a += money(20, 20);
 			Assert::AreEqual(20, a.get_kune());
-			Assert::AreEqual(20, a.get_lipe());
+			Assert::AreEqual(30, a.get_lipe());
 		}
 
 		TEST_METHOD(copy)
@@ -109,12 +111,12 @@ namespace UnitTests
 			std::stringstream ss2;
 			a -= money(11, 50);
 			ss2 << a;
-			Assert::AreEqual("-20 lp", ss2.str().c_str());
+			Assert::AreEqual("20 lp", ss2.str().c_str());
 
 			std::stringstream ss3;
 			a += money(1, 70);
 			ss3 << a;
-			Assert::AreEqual("1 kn, 50 lp", ss3.str().c_str());
+			Assert::AreEqual("1 kn, 90 lp", ss3.str().c_str());
 		}
 	};
 }

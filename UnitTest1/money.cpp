@@ -5,12 +5,11 @@
 namespace vsite::oop::v7
 {
 	money::money(int kn, int lp){
-		
 		if (kn >= 0) {
 			lipe = kn * 100 + lp;
 		}
-		else if (kn < 0) {
-			lipe =kn * 100 + lp * -1;
+		else if (kn = 0) {
+			lipe = kn * 100 + lp * -1;
 		}
 	}
 

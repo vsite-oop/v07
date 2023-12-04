@@ -19,8 +19,6 @@ namespace vsite::oop::v7
 		int const getcent()  { return cent; }
 		money& operator+=(const money& other);
 		money& operator-=(const money& other);
-
-
-};
+	};
 
 }

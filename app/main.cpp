@@ -1,4 +1,3 @@
-#include <iostream>
 #include "money.h"
 
 using vsite::oop::v7::money;

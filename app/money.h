@@ -10,7 +10,16 @@ namespace vsite::oop::v7
 	//TODO: implementirajte public metode i potrebne operatore klase money
 
 class money {
+	int eur;
+	int cent;
 
+public:
+	money();
+	money(int e);
+	money(int e, int c);
+
+	double get_value();
+	
 };
 
 }

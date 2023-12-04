@@ -34,7 +34,7 @@ namespace UnitTestv07
 
 		TEST_METHOD(TestAdditionOperator)
 		{
-			money m(5.35);
+			money m(5, 35);
 			auto a = m.get_value();
 			auto ak = m.convertToKn();
 			Assert::AreEqual(6.15_EUR, a += 0.80);
@@ -51,7 +51,7 @@ namespace UnitTestv07
 
 		TEST_METHOD(TestToString)
 		{
-			money ms(5.32);
+			money ms(5, 32);
 			Assert::AreEqual("5 Eura, 32 Centa", ms.ToString());
 			ms += 1.58;
 			Assert::AreEqual("6 Eura, 90 Centa", ms.ToString());

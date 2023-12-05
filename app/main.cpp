@@ -1,7 +1,7 @@
 #include <iostream>
 #include "money.h"
 
-using vsite::oop::v7::money;
+using namespace vsite::oop::v7;
 
 int main() {
 	money total(0);

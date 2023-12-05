@@ -1,4 +1,4 @@
-#include "pch.h"
+
 #include "CppUnitTest.h"
 #include "../app/money.h"
 #include <iostream>

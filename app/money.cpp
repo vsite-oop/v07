@@ -4,62 +4,65 @@
 
 namespace vsite::oop::v7
 {
-    money::money(int lp) : _kn(lp / 100), _lp(lp % 100) { }
+    money::money(int kn, int lp) : _total(kn * 100 + lp) { }
 
-    money::money(int kn, int lp) : _kn(kn + lp / 100), _lp(lp % 100) { }
+    int money::kn() const {
+        return _total / 100;
+    }
 
-    money money::operator + (money m) {
-        int val = (this->getIntAmount() + m.getIntAmount());
-        _kn = val / 100;
-        _lp = val % 100;
+    int money::lp() const {
+        return _total % 100;
+    }
+
+
+    money& money::operator + (const money& m) {
+        _total += m._total;
 
         return *this;
     }
 
-    money money::operator += (money m) {
+    money& money::operator += (const money& m) {
         this->operator+(m);
         return *this;
     }
 
 
-    money money::operator - (money m) {
-        int val = (this->getIntAmount() - m.getIntAmount());
-        _kn = val / 100;
-        _lp = val % 100;
+    money& money::operator - (const money& m) {
+        _total -= m._total;
 
         return *this;
     }
 
-    money money::operator -= (money m) {
+    money& money::operator -= (const money& m) {
         this->operator-(m);
         return *this;
     }
 
 
     std::ostream& operator<<(std::ostream& os, const money& m) {
-        return os << "Kuna: " << m._kn << " Lipa: " << m._lp << "\n";
+        return os << m.to_string();
     }
 
-    std::istream& operator>>(std::istream& is, money& m)
-    {
-        is >> m._kn >> m._lp;
+    std::istream& operator>>(std::istream& is, money& m) {
+        int kn, lp;
+        is >> kn >> lp;
+        m._total = kn * 100 + lp;
         return is;
     }
 
 
-    int money::getIntAmount() const
-    {
-        return _kn * 100 + _lp;
-    }
-
-    std::string money::to_string() {
-        if (_kn == 0)
+    std::string money::to_string() const {
+        if (kn() == 0)
         {
-            return std::format("{:02d} lp", _lp);
+            return std::format("{:02d} lp", lp());
+        }
+        else if (lp() == 0)
+        {
+            return std::format("{} kn", kn());
         }
         else
         {
-            return std::format("{} kn, {:02d} lp", _kn, _lp);
+            return std::format("{} kn, {:02d} lp", kn(), lp());
         }
     }
 }

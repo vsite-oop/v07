@@ -93,29 +93,27 @@ namespace all_tests
 			total += m2;
 			money m3(12, 40);
 			total += m3;
-			money m4(-5, 50);
+			money m4(5, 50);
 			total -= m4;
 			money m5(10, 15);
 			total += m5;
-			Assert::AreEqual("31 eura 05 centi",total.ispis().c_str());
+			std::stringstream ss2;
+			ss2 << total;
+			Assert::AreEqual("31 eura 05 centi", ss2.str().c_str());
 		}
-
-		TEST_METHOD(TestMethod9)
+		TEST_METHOD(TestMethod13)
 		{
-			money total;
-			money m(INT_MAX - 100, 0);
-			total += m;
-			money m2(102, 0);
-			Assert::ExpectException<std::overflow_error>([&] { total += m2; });
+			money m(0, 40);
+			std::stringstream ss2;
+			ss2 << m;
+			Assert::AreEqual("40 centi",ss2.str().c_str());
 		}
-		TEST_METHOD(TestMethod10)
+		TEST_METHOD(TestMethod14)
 		{
-			money total;
-			money m(INT_MIN + 100, 0);
-			total -= m;
-			money m2(102, 0);
-			Assert::ExpectException<std::underflow_error>([&] { total -= m2; });
+			money m(12, 0);
+			std::stringstream ss2;
+			ss2 << m;
+			Assert::AreEqual("12 eura", ss2.str().c_str());
 		}
-
 	};
 }

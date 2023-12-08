@@ -12,5 +12,8 @@ int main() {
 		else
 			total += m;
 	}
+
 	std::cout << total << '\n';
+
+
 }

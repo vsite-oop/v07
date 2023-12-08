@@ -10,10 +10,10 @@ namespace vsite::oop::v7
 	double operator ""_USD(unsigned long long price) {
 		return price / 6.98;
 	}
-	
-	money::money(){}
 
-	money::money(int kuna, int lipa) : kn(kuna + lipa / 100), lp(lipa % 100) {}
+	money::money(int kuna, int lipa) : kn(kuna), lp(lipa) {
+		money::checkflow();
+	}
 
 	int money::get_kn() const{
 		return kn;
@@ -54,12 +54,10 @@ namespace vsite::oop::v7
 	std::ostream& operator<< (std::ostream& os, const money& m) {
 		int kn = m.kn;
 		int lp = m.lp;
-		if (kn == 0 && lp == 0) {
-			os << "0 kn, 0 lp";
+		if (lp == 0) {
+			os << kn << " kn";
 		}else if (kn == 0) {
 			os << lp  << " lp";
-		}else if (lp == 0) {
-			os << kn << " kn";
 		}else {
 			os << kn << " kn, " << lp << " lp";
 		}

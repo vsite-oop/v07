@@ -12,8 +12,7 @@ namespace vsite::oop::v7
 		double get_price() const;
 
 	public:
-		money();
-		money(int kuna, int lipa = 0);
+		money(int kuna = 0, int lipa = 0);
 		int get_kn() const;
 		int get_lp() const;
 		money& operator +=(const money& m);

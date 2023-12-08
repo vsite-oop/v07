@@ -106,7 +106,7 @@ namespace Test
 			std::stringstream ss;
 			money m;
 			ss << m;
-			Assert::AreEqual("0 kn, 0 lp"s, ss.str());
+			Assert::AreEqual("0 kn"s, ss.str());
 		}
 	};
 }

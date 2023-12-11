@@ -28,8 +28,19 @@ namespace vsite::oop::v7
 		int euro; int cent;
 		euro = m.total / 100;
 		cent = m.total % 100;
-		os << euro << "€ i " << cent << " centa.";
-		return os;
+		if (cent == 0) {
+			os << euro << " Eura.";
+			return os;
+		}
+		else if (euro == 0)
+		{
+			os << cent << " centi.";
+			return os;
+		}
+		else {
+			os << euro << "€ i " << cent << " centa.";
+			return os;
+		}
 	}
 
 	int money::get_value() const{

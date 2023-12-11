@@ -10,7 +10,7 @@ namespace UnitTestv07
 	TEST_CLASS(UnitTestv07)
 	{
 	public:
-		
+
 		TEST_METHOD(TestIsMoneyClass)
 		{
 			money m(0);
@@ -49,6 +49,30 @@ namespace UnitTestv07
 			ms -= money(1, 99);
 			ssb << ms;
 			Assert::AreEqual("4€ i 91 centa."s, ssb.str());
+		}
+
+		TEST_METHOD(TestZeroEur)
+		{
+			std::stringstream ss;
+			money m(0, 50);
+			ss << m;
+			Assert::AreEqual("50 centi."s, ss.str());
+		}
+
+		TEST_METHOD(TestZeroCent)
+		{
+			std::stringstream ss;
+			money m(5);
+			ss << m;
+			Assert::AreEqual("5 Eura."s, ss.str());
+		}
+
+		TEST_METHOD(TestZero)
+		{
+			std::stringstream ss;
+			money m;
+			ss << m;
+			Assert::AreEqual("0 Eura."s, ss.str());
 		}
 	};
 }

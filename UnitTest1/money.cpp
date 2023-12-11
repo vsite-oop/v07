@@ -1,5 +1,6 @@
 #include "money.h"
 #include <algorithm>
+//#include <format>
 
 namespace vsite::oop::v7
 {
@@ -33,7 +34,7 @@ namespace vsite::oop::v7
 		if (eur != 0) {
 			output << eur << " Eura";
 			if (ct != 0) {
-				output << ", ";
+				output << ',';
 			}
 		}
 		if (ct != 0) {
@@ -51,7 +52,7 @@ namespace vsite::oop::v7
 			}
 		}
 		if (eur == 0 && ct == 0) {
-			output << eur << " Eura, " << ct << " centi";
+			output << eur << " Eura" << ct << " centi";
 		}
 		return output;
 	}

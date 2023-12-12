@@ -117,7 +117,7 @@ namespace UnitTest1
 			std::stringstream ss3;
 			a -= money(1, 5);
 			ss3 << a;
-			Assert::AreEqual("-1 Eura, 10 centi", ss3.str().c_str());
+			Assert::AreEqual("-1 Eura, -10 centi", ss3.str().c_str());
 		}
 	};
 }

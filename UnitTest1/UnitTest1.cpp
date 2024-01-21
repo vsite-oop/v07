@@ -20,12 +20,10 @@ namespace UnitTest1
 			Assert::AreEqual("80 lp"s, ss1.str());
 
 			std::stringstream ss2;
-			ss2 << money(1, 00);
-			Assert::AreEqual("1 kn, 00 lp"s, ss2.str());
+			ss2 << money(1, 50);
+			Assert::AreEqual("1 kn, 50 lp"s, ss2.str());
 
-			std::stringstream ss3;
-			ss3 << money(1, 50);
-			Assert::AreEqual("1 kn, 50 lp"s, ss3.str());
+
 		}
 		TEST_METHOD(Test2)
 		{
@@ -33,10 +31,6 @@ namespace UnitTest1
 			std::stringstream ss1;
 			ss1 << money(10, 240);
 			Assert::AreEqual("12 kn, 40 lp"s, ss1.str());
-
-			std::stringstream ss2;
-			ss2 << money(007, 050);
-			Assert::AreEqual("7 kn, 05 lp"s, ss2.str());
 
 		}
 

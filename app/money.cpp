@@ -1,6 +1,6 @@
 #include "money.h"
+#include<format>
 #include<iomanip>
-#include<iostream>
 
 
 namespace vsite::oop::v7
@@ -51,13 +51,16 @@ namespace vsite::oop::v7
         }
         else if (m.lp() == 0)
         {
-            os << m.kn() << " kn";
+
+            os << std::setw(2) << std::setfill('0') << m.kn() << " kn";
         }
+
         else
         {
             os << m.kn() << " kn, " << std::setw(2) << std::setfill('0') << m.lp() << " lp";
         }
         return os;
+
     }
 
     std::istream& operator>>(std::istream& is, money& m) {
@@ -65,9 +68,7 @@ namespace vsite::oop::v7
         if (is >> kn >> lp) {
             m = money(kn, lp);
         }
-        else {
-            is.setstate(std::ios::failbit);
-        }
+
         return is;
     }
 

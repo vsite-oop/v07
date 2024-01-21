@@ -9,12 +9,12 @@ class money {
 
     int _total;
 
-public:
-    money(int kn = 0, int lp = 0);
-
     int kn() const;
 
     int lp() const;
+
+public:
+    money(int kn = 0, int lp = 0);
 
     money operator + (const money& m) const;
     money& operator += (const money& m);

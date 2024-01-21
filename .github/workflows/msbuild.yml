@@ -35,5 +35,5 @@ jobs:
       uses: darenm/Setup-VSTest@v1
 
     - name: Run VSTest
-      run: vstest.console.exe /Platform:x64 /Enablecodecoverage .\x64\Release\UnitTest1.dll
+      run: vstest.console.exe /Platform:x64 /Enablecodecoverage "C:\Users\Korisnik\source\repos\v07\x64\Debug\UnitTest1.dll"
       

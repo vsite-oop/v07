@@ -10,7 +10,11 @@ int main() {
 		if (c == '-')
 			total -= m;
 		else
+		{
 			total += m;
+
+		}
+			
 	}
 	std::cout << total << '\n';
 }

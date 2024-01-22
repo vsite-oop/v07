@@ -29,21 +29,19 @@ namespace vsite::oop::v7
 	}
 
 	std::ostream& operator << (std::ostream& os, const money& m) {
-		int euri; int centi;
-		euri = m.total / 100;
-		centi = m.total % 100;
-		if (centi == 0) {
-			os << euri << " E.";
-			return os;
-		}
-		else if (euri == 0)
-		{
-			os << centi << " c.";
-			return os;
-		}
-		else {
-			os << euri << " E i " << centi << " c.";
-			return os;
-		}
+	int euri = m.total / 100;
+	int centi = m.total % 100;
+
+	if (centi == 0) {
+		os << euri << " E.";
+	}
+	else if (euri == 0) {
+		os << centi << " c.";
+	}
+	else {
+		os << euri << " E i " << centi << " c.";
+	}
+
+	return os;
 	}
 }

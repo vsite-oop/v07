@@ -21,9 +21,7 @@ namespace vsite::oop::v7
 		friend std::ostream& operator << (std::ostream& os, const money& m);
 
 
-		int get_value() const;
-		void add_value(int addt, int dec);
-		void sub_value(int subs, int dec);
+		
 	};
 
 

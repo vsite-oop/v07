@@ -46,17 +46,4 @@ namespace vsite::oop::v7
 			return os;
 		}
 	}
-
-	int money::get_value() const {
-		return total;
-	}
-
-	void money::add_value(int addt, int dec) {
-		total += addt * 100 + dec;
-	}
-
-	void money::sub_value(int subs, int dec) {
-		total -= (subs * 100 + dec);
-	}
-
 }

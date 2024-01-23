@@ -4,11 +4,11 @@
 
 namespace vsite::oop::v7
 {
-	money::money(int e, int c) {
+		money::money(int e,  int c) {
 		eur = e;
 		cent = c;
 		if (cent > 100)	money::overflow();
-		if (cent < 0)	money::underflow();
+		if (cent < -100)	money::underflow();
 	}
 
 	money& money::operator+=(const money& other) {
@@ -20,8 +20,12 @@ namespace vsite::oop::v7
 		return *this;
 	}
 	money& money::operator-=(const money& other) {
-		eur -= other.eur;
+		cent += eur * 100;
+		eur = 0;
 		cent -= other.cent;
+		cent -= (other.eur * 100);
+		eur = cent / 100;
+		cent %= 100;
 		if (cent < 0) {
 			money::underflow();
 		}
@@ -30,15 +34,21 @@ namespace vsite::oop::v7
 
 
 	std::istream& operator>>(std::istream& input, money& m) {
-		int e, c;
-		input >> e >> c;
-		m.eur = e;
-		m.cent = c;
+		input >> m.eur >> m.cent;
 		return input;
 	}
 
 	std::ostream& operator<<(std::ostream& output, const money& m) {
-		output << m.eur << " eur, " << m.cent << " cent";
+		if (m.eur != 0) {
+			output << m.eur << " eur";
+			if (m.cent != 0) {
+				output << ", " << m.cent << " cent";
+			}
+			return output;
+		}
+		if (m.cent != 0) {
+			output << m.cent << " cent";
+		}
 		return output;
 	}
 
@@ -49,14 +59,17 @@ namespace vsite::oop::v7
 	}
 
 	void money::underflow() {
-		if (cent > -100) {
-			cent = abs(cent);
-		}
-		else {
 			int a = cent / 100;
 			eur += a;
 			cent -= a * 100;
-		}
+			if(cent<0 && eur>0){
+				eur -= 1;
+				cent += 100;
+			}
+			else if (cent < 0 && eur < 0) {
+				cent = abs(cent);
+			}
+
 	}
 
 

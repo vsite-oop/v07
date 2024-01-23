@@ -5,6 +5,7 @@
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace vsite::oop::v7;
+using namespace std::string_literals;
 
 namespace UnitTest1
 {
@@ -32,7 +33,7 @@ namespace UnitTest1
 			money a;
 			is >> a;
 			ss << a;
-			Assert::AreEqual("2 eur, 50 cent", ss.str().c_str());
+			Assert::AreEqual("2 eur, 50 cent"s, ss.str());
 		}
 		TEST_METHOD(money_operators) 
 		{
@@ -51,27 +52,69 @@ namespace UnitTest1
 			std::stringstream ss;
 			money a(4, 90);
 			money b(2, 20);
-			money c(0, 1000);
 			a += b;
 			ss << a;
-			Assert::AreEqual("7 eur, 10 cent", ss.str().c_str());
-			ss.str("");
+			Assert::AreEqual("7 eur, 10 cent"s, ss.str());
+		}
+		TEST_METHOD(money_Overflow2)
+		{
+			std::stringstream ss;
+			money c(0, 1000);
 			ss << c;
-			Assert::AreEqual("10 eur, 0 cent", ss.str().c_str());
-			ss.str("");
+			Assert::AreEqual("10 eur"s, ss.str());
 		}
 		TEST_METHOD(money_Underflow)
 		{
 			std::stringstream ss;
 			money a(4, 90);
 			money b(2, 20);
-			money c(0, -1000);
 			b -= a;
 			ss << b;
-			Assert::AreEqual("-2 eur, 70 cent", ss.str().c_str());
-			ss.str("");
+			Assert::AreEqual("-2 eur, 70 cent"s, ss.str());
+		}
+		TEST_METHOD(money_Underflow2)
+		{
+			std::stringstream ss;
+			money a(2, 50);
+			money b(0,60);
+			a -= b;
+			ss << a;
+			Assert::AreEqual("1 eur, 90 cent"s, ss.str());
+		}
+		TEST_METHOD(money_Underflow3)
+		{
+			std::stringstream ss;
+			money a(2, 50);
+			money b(1, 60);
+			a -= b;
+			ss << a;
+			Assert::AreEqual("90 cent"s, ss.str());
+		}
+		TEST_METHOD(money_Underflow5)
+		{
+			std::stringstream ss;
+			money a(2, 50);
+			money b(0, 60);
+			b -= a;
+			ss << b;
+			Assert::AreEqual("-1 eur, 90 cent"s, ss.str());
+		}
+		TEST_METHOD(money_Underflow6)
+		{
+			std::stringstream ss;
+			money a(2, 50);
+			money b(1, 60);
+			b -= a;
+			ss << b;
+			Assert::AreEqual("-90 cent"s, ss.str());
+		}
+
+		TEST_METHOD(money_Underflow4)
+		{
+			std::stringstream ss;
+			money c(0, -1000);
 			ss << c;
-			Assert::AreEqual("-10 eur, 0 cent", ss.str().c_str());
+			Assert::AreEqual("-10 eur"s, ss.str());
 		}
 	};
 }

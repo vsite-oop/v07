@@ -141,8 +141,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="money.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="money.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="money.h" />

@@ -1,11 +1,9 @@
 #include "money.h"
-#include <iomanip>
 #include <algorithm>
 
 namespace vsite::oop::v7
 {
-
-	money::money(int _eur, int _cent) : eur(_eur), cent(_cent) {
+	money::money(int _eur, int _cent): eur(_eur), cent(_cent) {
 		calculate();
 	}
 
@@ -21,12 +19,12 @@ namespace vsite::oop::v7
 		}
 	}
 
-	int money::get_total_cents() {
-		return eur * 100 + cent;
+	double money::get_total_amount() {
+		return eur + cent / 100.0;
 	}
 
 	money money::operator+=(money& other) {
-
+	
 		this->eur += other.eur;
 		this->cent += other.cent;
 
@@ -42,7 +40,7 @@ namespace vsite::oop::v7
 		calculate();
 
 		return *this;
-	}
+	}	
 
 	std::istream& operator>>(std::istream& is, money& m) {
 
@@ -52,18 +50,8 @@ namespace vsite::oop::v7
 
 		return is;
 	}
-
 	std::ostream& operator<<(std::ostream& os, const money& m) {
-		if (m.eur) {
-			os << m.eur << " eur";
-		}
-		if (m.eur && m.cent) {
-			os << ", ";
-		}
-		if (m.cent) {
-			os << std::setw(2) << std::setfill('0') << m.cent << " cent";
-		}
-
+		os << ' ' << m.eur << " eur, " << m.cent << " cent";
 		return os;
 	}
 }

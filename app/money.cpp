@@ -3,7 +3,6 @@
 
 namespace vsite::oop::v7
 {
-	// comment for workflow
 
 	money::money(int _eur, int _cent) : eur(_eur), cent(_cent) {
 		calculate();

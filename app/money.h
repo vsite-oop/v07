@@ -12,7 +12,7 @@ namespace vsite::oop::v7
 		~money() = default;
 
 		void calculate();
-		double get_total_amount();
+		int get_total_cents();
 
 		money operator+=(money& other);
 		money operator-=(money& other);

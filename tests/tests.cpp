@@ -10,30 +10,32 @@ namespace tests
 	{
 	public:
 
-		TEST_METHOD(TestInstantiate) {
-
+		TEST_METHOD(TestInstantiate) 
+		{
 			money m1(1, 99);
 			Assert::AreEqual(199, m1.get_total_cents());
-
 
 			money m2(-124, -12);
 			Assert::AreEqual(-12412, m2.get_total_cents());
 
 			money m3(0, -12);
 			Assert::AreEqual(-12, m3.get_total_cents());
-
 		}
 		
-		TEST_METHOD(TestOwerflowAndUnderflow)
+		TEST_METHOD(TestOwerflow)
 		{
 			money m1(3, 150);
 			Assert::AreEqual(450, m1.get_total_cents());
 
-			money m2(-1, -250);
-			Assert::AreEqual(-350, m2.get_total_cents());
 
 			money m3(-1, 250);
-			Assert::AreEqual(-350, m2.get_total_cents());
+			Assert::AreEqual(150, m3.get_total_cents());
+		}
+
+		TEST_METHOD(TestUnderflow)
+		{
+			money m1(-1, -250);
+			Assert::AreEqual(-350, m1.get_total_cents());
 
 		}
 
@@ -45,7 +47,7 @@ namespace tests
 			Assert::AreEqual(800, m1.get_total_cents());
 		}
 
-		TEST_METHOD(TestAddAndSubtract) {
+		TEST_METHOD(TestSubtract) {
 			money m1(5, 12);
 			money m2(2, 88);
 
@@ -62,22 +64,34 @@ namespace tests
 			Assert::AreEqual(352, m1.get_total_cents());
 		}
 
-		TEST_METHOD(TestStreamOperatorOutput) {
-			money m1(0, 2);
-			money m2(2, 0);
-			money m3(12, 12);
+		TEST_METHOD(TestOutputBoth) {
+			money m1(12, 12);
 
 			std::ostringstream output1;
-			std::ostringstream output2;
-			std::ostringstream output3;
 
 			output1 << m1;
-			output2 << m2;
-			output3 << m3;
+
+			Assert::AreEqual(std::string("12 eur, 12 cent"), output1.str());
+		}
+
+		TEST_METHOD(TestOutputCents) {
+			money m1(0, 2);
+
+			std::ostringstream output1;
+
+			output1 << m1;
 
 			Assert::AreEqual(std::string("02 cent"), output1.str());
-			Assert::AreEqual(std::string("2 eur"), output2.str());
-			Assert::AreEqual(std::string("12 eur, 12 cent"), output3.str());
+		}
+
+		TEST_METHOD(TestOutputEur) {
+			money m1(2, 0);
+
+			std::ostringstream output1;
+
+			output1 << m1;
+
+			Assert::AreEqual(std::string("2 eur"), output1.str());
 		}
 
 		TEST_METHOD(TestStreamOperatorsIntegration) {

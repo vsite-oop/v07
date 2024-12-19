@@ -11,7 +11,6 @@ namespace vsite::oop::v7
 		money(int eur, int cent);
 		~money() = default;
 
-		void calculate();
 		int get_total_cents();
 
 		money operator+=(money& other);
@@ -23,6 +22,9 @@ namespace vsite::oop::v7
 	private:
 		int eur;
 		int cent;
+
+		void calculate();
+
 	};
 
 }

@@ -1,5 +1,6 @@
 #include "money.h"
 #include <algorithm>
+#include <format>
 
 namespace vsite::oop::v7
 {
@@ -39,7 +40,18 @@ namespace vsite::oop::v7
 
     std::ostream& operator<<(std::ostream& os, money& m)
     {
-        os << m.total / 100 << " eur, " << m.total % 100 << " ct";
+        if (m.total % 100 == 0)
+        {
+            os << m.total / 100 << " eur";
+        }
+        else if (m.total / 100 == 0)
+        {
+            os << std::format("{:02d} ct", m.total % 100);
+        }
+        else
+        {
+            os << m.total / 100 << " eur, " << std::format("{:02d} ct", m.total % 100);
+        }
         return os;
     }
 }

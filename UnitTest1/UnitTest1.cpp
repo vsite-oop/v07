@@ -22,7 +22,7 @@ namespace UnitTest1
 			total += money(23, 25);
 			std::stringstream t2;
 			t2 << total;
-			Assert::AreEqual("34 eur, 0 ct"s, t2.str());
+			Assert::AreEqual("34 eur"s, t2.str());
 
 			total += money(100, 99);
 			std::stringstream t3;
@@ -37,7 +37,7 @@ namespace UnitTest1
 			total -= money(10, 50);
 			std::stringstream t1;
 			t1 << total;
-			Assert::AreEqual("80 eur, 0 ct"s, t1.str());
+			Assert::AreEqual("80 eur"s, t1.str());
 
 			total -= money(0, 33);
 			std::stringstream t2;
@@ -99,7 +99,7 @@ namespace UnitTest1
 			std::stringstream t;
 			money m(0, 99);
 			t << m;
-			Assert::AreEqual("0 eur, 99 ct"s, t.str());
+			Assert::AreEqual("99 ct"s, t.str());
 		}
 
 		TEST_METHOD(Zero_ct)
@@ -107,7 +107,7 @@ namespace UnitTest1
 			std::stringstream t;
 			money m(10, 0);
 			t << m;
-			Assert::AreEqual("10 eur, 0 ct"s, t.str());
+			Assert::AreEqual("10 eur"s, t.str());
 		}
 
 		TEST_METHOD(Zero)
@@ -115,7 +115,7 @@ namespace UnitTest1
 			std::stringstream t;
 			money m(0);
 			t << m;
-			Assert::AreEqual("0 eur, 0 ct"s, t.str());
+			Assert::AreEqual("0 eur"s, t.str());
 		}
 	};
 }
